@@ -5,6 +5,9 @@ from db import get_db_connection
 def create_player_history_table():
     conn = get_db_connection()
     c = conn.cursor()
+
+    c.execute("DROP TABLE IF EXISTS player_history;")
+
     c.execute('''
         CREATE TABLE IF NOT EXISTS player_history (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,8 +17,7 @@ def create_player_history_table():
             goals_scored INTEGER,
             assists INTEGER,
             clean_sheets INTEGER,
-            home_id INTEGER,
-            away_id INTEGER,
+            opponent_team INTEGER,
             home_score INTEGER,
             away_score INTEGER,
             home BOOLEAN,
@@ -48,8 +50,7 @@ def fetch_and_store_player_history():
             player_data = response.json()
             for gw in player_data["history"]:
                 home = gw.get("was_home", True)
-                home_id = gw.get("team_h")
-                away_id = gw.get("team_a")
+                opponent_team = gw.get("opponent_team")
                 home_score = gw.get("team_h_score")
                 away_score = gw.get("team_a_score")
                 bonus_points = gw.get("bonus", 0)
@@ -62,12 +63,12 @@ def fetch_and_store_player_history():
                 c.execute('''
                     INSERT OR REPLACE INTO player_history (
                         player_id, gameweek, total_points, goals_scored, assists, clean_sheets,
-                        home_id, away_id, home_score, away_score, home, bonus_points,
+                        opponent_team, home_score, away_score, home, bonus_points,
                         expected_goals, expected_assists, transfers_in, transfers_out, kickoff_time
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     player_id, gw["round"], gw["total_points"], gw["goals_scored"], gw["assists"],
-                    gw["clean_sheets"], home_id, away_id, home_score, away_score, home,
+                    gw["clean_sheets"], opponent_team, home_score, away_score, home,
                     bonus_points, expected_goals, expected_assists, transfers_in, transfers_out, kickoff_time
                 ))
         else:
