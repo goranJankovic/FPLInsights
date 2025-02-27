@@ -1,8 +1,10 @@
 from fetch_data import get_fpl_data, get_fixtures
+from player_history import create_player_history_table, fetch_and_store_player_history
 from teams import create_teams_table, save_teams
 from players import create_players_table, save_players
 from fixtures import create_fixtures_table, save_fixtures
 from events import create_events_table, save_events
+
 
 def update_fpl_data():
     print("Fetch FPL data...")
@@ -22,7 +24,11 @@ def update_fpl_data():
     create_events_table()
     save_events(fpl_data["events"])
 
-    print("Update done")
+    print("Updating player history...")
+    create_player_history_table()
+    fetch_and_store_player_history()
+
+print("Update done")
 
 if __name__ == "__main__":
     update_fpl_data()
