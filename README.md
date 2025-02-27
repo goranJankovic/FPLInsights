@@ -84,17 +84,6 @@ JOIN teams ON players.team_id = teams.id
 JOIN element_types ON players.element_type = element_types.id;
 ```
 
-Get upcoming fixtures:
-
-```sql
-SELECT f.event, t1.name AS home_team, t2.name AS away_team, f.kickoff_time
-FROM fixtures f
-JOIN teams t1 ON f.home_team = t1.id
-JOIN teams t2 ON f.away_team = t2.id
-WHERE f.event IS NOT NULL
-ORDER BY f.event, f.kickoff_time;
-```
-
 Top 10 players by total points:
 
 ```sql
@@ -107,12 +96,11 @@ LIMIT 10;
 ## 📝 Future Improvements
 
 🚀 Adding advanced data visualization\
-🚀 Creating a REST API to serve data\
-🚀 Enhancing fixture and performance analysis
+🚀 Creating a REST API to serve data
 
 💡 **Contributions are welcome!** Feel free to fork, improve, and submit pull requests.
 
-📞 **GitHub Repository:** [FPLInsights](https://github.com/goranJankovic/FPLInsights)\
+📞 **GitHub Repository:** [FPLInsights](https://github.com/goranJankovic/FPLInsights)
 
 🚀 Enjoy FPL data insights! 🏆
 
