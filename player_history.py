@@ -76,29 +76,3 @@ def fetch_and_store_player_history():
     conn.commit()
     conn.close()
     print("Player history successfully updated!")
-
-
-def get_player_history_from_db(player_id):
-    conn = get_db_connection()
-    c = conn.cursor()
-
-    c.execute('''
-        SELECT gameweek, total_points, goals_scored, assists, clean_sheets,
-               home_id, away_id, home_score, away_score, home, bonus_points,
-               expected_goals, expected_assists, transfers_in, transfers_out, kickoff_time
-        FROM player_history WHERE player_id = ? ORDER BY gameweek
-    ''', (player_id,))
-
-    history = c.fetchall()
-    conn.close()
-
-    if not history:
-        print(f"No history found for player {player_id}")
-        return
-
-    print(
-        "GW | Points | Goals | Assists | CS | Home | H-Score | A-Score | Bonus | xG | xA | Transfers In | Transfers Out | Kickoff Time")
-    print("-" * 140)
-    for row in history:
-        print(
-            f"{row[0]:>2} | {row[1]:>6} | {row[2]:>5} | {row[3]:>7} | {row[4]:>2} | {row[9]:>4} | {row[6]:>7} | {row[7]:>7} | {row[10]:>5} | {row[11]:>4.2f} | {row[12]:>4.2f} | {row[13]:>12} | {row[14]:>12} | {row[15]}")
