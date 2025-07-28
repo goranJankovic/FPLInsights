@@ -64,7 +64,7 @@ sqlite3 fpl_data.db
 Get all players with their teams and positions:
 
 ```sql
-SELECT players.first_name, players.second_name, teams.name AS team, element_types.singular_name AS position
+SELECT players.first_name, players.second_name, teams.name AS team, element_types.name AS position
 FROM players
          JOIN teams ON players.team_id = teams.id
          JOIN element_types ON players.element_type = element_types.id;

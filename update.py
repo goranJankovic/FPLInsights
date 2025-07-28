@@ -1,3 +1,4 @@
+from element_types import create_elements_types_table, save_element_types
 from fetch_data import get_fpl_data, get_fixtures
 from player_history import create_player_history_table, fetch_and_store_player_history
 from teams import create_teams_table, save_teams
@@ -23,6 +24,9 @@ def update_fpl_data():
 
     create_events_table()
     save_events(fpl_data["events"])
+
+    create_elements_types_table()
+    save_element_types(fpl_data["element_types"])
 
     print("Updating player history...")
     create_player_history_table()
