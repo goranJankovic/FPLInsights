@@ -10,12 +10,12 @@ def create_players_table():
             second_name TEXT,
             team_id INTEGER,
             element_type INTEGER,
-            now_cost INTEGER,
+            now_cost REAL,
             total_points INTEGER,
             goals_scored INTEGER,
             assists INTEGER,
             clean_sheets INTEGER,
-            selected_by_percent TEXT,
+            selected_by_percent REAL,
             FOREIGN KEY (team_id) REFERENCES teams(id)
         )
     ''')
@@ -26,6 +26,8 @@ def save_players(players):
     conn = get_db_connection()
     c = conn.cursor()
     for player in players:
+        selected_by_percent = float(player["selected_by_percent"]) if player["selected_by_percent"] else 0.0
+        now_cost = float(player["now_cost"]) / 10 if player["now_cost"] else 0.0
         c.execute('''
             INSERT OR REPLACE INTO players (
                 id, first_name, second_name, team_id, element_type, now_cost,
@@ -33,9 +35,9 @@ def save_players(players):
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             player["id"], player["first_name"], player["second_name"], player["team"],
-            player["element_type"], player["now_cost"], player["total_points"],
+            player["element_type"], now_cost, player["total_points"],
             player["goals_scored"], player["assists"], player["clean_sheets"],
-            player["selected_by_percent"]
+            selected_by_percent
         ))
     conn.commit()
     conn.close()
