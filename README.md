@@ -38,28 +38,13 @@ sqlite3 fpl_data.db
   ```
   requests
   sqlite3
+  tabulate
+  notebook
   ```
   Install with:
   ```bash
   pip install -r requirements.txt
   ```
-
-## 📂 Project Structure
-
-```
-📚 FPLInsights
-📃 main.py                 # Main script that updates FPL data
-📃 fetch_data.py           # Fetches data from the FPL API
-📃 db.py                   # Handles SQLite database connection
-📃 teams.py                # Manages teams data
-📃 players.py              # Manages players data
-📃 fixtures.py             # Manages fixture schedules
-📃 events.py               # Handles gameweek events
-📃 update.py               # Command to update all FPL data
-📃 get_player_history.py   # Specific player history with statistics 
-📃 README.md               # Project documentation
-📃 .gitignore              # Files to exclude from Git
-```
 
 ## ✅ Features
 
@@ -106,6 +91,30 @@ GW | Points | Goals | Assists | CS | Home | H-Score | A-Score | Bonus | xG | xA 
  2 |     10 |     1 |       0 |  1 |    1 |       2 |       0 |     2 | 0.50 | 0.25 |       262302 |        64190 | 2024-08-25T15:30:00Z
  3 |     17 |     1 |       2 |  1 |    0 |       0 |       3 |     3 | 0.50 | 0.63 |       308526 |       186127 | 2024-09-01T15:00:00Z
 ```
+
+## 📊 Jupyter Notebook Support
+You can also explore and analyze FPL data interactively using Jupyter Notebooks.
+
+```jupyter notebook```
+
+An example notebook is included:
+
+```fpl_query.ipynb```
+
+
+### 🔍 Example Jupyter Output Preview
+
+![Top Players Preview](assets/top_players.png)
+
+This notebook allows you to:
+
+Query fpl_data.db using SQL
+
+Load results into pandas.DataFrame
+
+Display formatted tables using tabulate
+
+Prepare for visualizations with matplotlib or seaborn (optional)
 
 ## 📝 Future Improvements
 
