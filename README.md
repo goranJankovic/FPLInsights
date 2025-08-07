@@ -123,7 +123,7 @@ Prepare for visualizations with matplotlib or seaborn (optional)
 
 💡 **Contributions are welcome!** Feel free to fork, improve, and submit pull requests.
 
-📞 **GitHub Repository:** [FPLInsights](https://github.com/goranJankovic/FPLInsights)
+📞 **GitHub Repository:** [FPLInsights](https://github.com/goranJankovic/fpl-insights)
 
 🚀 Enjoy FPL data insights! 🏆
 
