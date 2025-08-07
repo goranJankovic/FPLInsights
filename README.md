@@ -1,4 +1,4 @@
-# FPLInsights 📊
+# fpl-insights 📊
 
 A Python project for analyzing data retrieved from the **Fantasy Premier League API**.\
 It fetches **teams, players, fixtures, and statistics** and stores them in an **SQLite database**.
@@ -123,7 +123,7 @@ Prepare for visualizations with matplotlib or seaborn (optional)
 
 💡 **Contributions are welcome!** Feel free to fork, improve, and submit pull requests.
 
-📞 **GitHub Repository:** [FPLInsights](https://github.com/goranJankovic/fpl-insights)
+📞 **GitHub Repository:** [fpl-insights](https://github.com/goranJankovic/fpl-insights)
 
 🚀 Enjoy FPL data insights! 🏆
 
