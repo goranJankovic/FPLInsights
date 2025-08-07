@@ -1,77 +1,66 @@
 # fpl-insights 📊
 
-A Python project for analyzing data retrieved from the **Fantasy Premier League API**.\
-It fetches **teams, players, fixtures, and statistics** and stores them in an **SQLite database**.
+**A Python project for analyzing Fantasy Premier League (FPL) data.**  
+Fetches teams, players, fixtures, and player stats from the official FPL API and stores them in a local SQLite database for querying and analysis.
+
+---
 
 ## 🚀 How to Run the Project
 
-Clone the repository:
-
+### 1. Clone the repository
 ```bash
-git clone https://github.com/goranJankovic/FPLInsights.git
-cd FPLInsights
+git clone https://github.com/goranJankovic/fpl-insights.git
+cd fpl-insights
 ```
 
-Install dependencies:
-
+### 2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the main script to fetch and store data:
-
+### 3. Fetch and store FPL data
 ```bash
 python main.py
 ```
 
-Analyze the data using SQLite:
-
+### 4. Analyze data with SQLite
 ```bash
 sqlite3 fpl_data.db
 ```
+
+---
 
 ## 📦 Requirements
 
-- Python 3.8+
-- SQLite3 (built-in with Python)
-- Required Python libraries (installed via `requirements.txt`):
-  ```
-  requests
-  sqlite3
-  tabulate
-  notebook
-  ```
-  Install with:
-  ```bash
-  pip install -r requirements.txt
-  ```
+- Python **3.8+**
+- SQLite3 (**built-in** with Python)
+- Required libraries (installed via `requirements.txt`):
+  - `requests`
+  - `tabulate`
+  - `notebook`
+
+---
 
 ## ✅ Features
 
-👉 Fetches teams, players, fixtures, and statistics\
-👉 Stores data in an SQLite database\
-👉 Supports SQL queries for analysis\
-👉 Simple and easy-to-use structure
+- 🔄 Fetches teams, players, fixtures, and stats from the FPL API
+- 🗃️ Stores data in a local SQLite database
+- 🔍 Enables SQL-based analysis
+- 🧰 Lightweight and easy to extend
 
-## 🔍 Example Queries
+---
 
-After fetching data, you can run SQL queries using:
+## 🔍 Example SQL Queries
 
-```bash
-sqlite3 fpl_data.db
-```
-
-Get all players with their teams and positions:
-
+### Get players with teams and positions:
 ```sql
 SELECT players.first_name, players.second_name, teams.name AS team, element_types.name AS position
 FROM players
-         JOIN teams ON players.team_id = teams.id
-         JOIN element_types ON players.element_type = element_types.id;
+JOIN teams ON players.team_id = teams.id
+JOIN element_types ON players.element_type = element_types.id;
 ```
 
-Top 10 players by total points:
-
+### Top 10 players by total points:
 ```sql
 SELECT first_name, second_name, total_points
 FROM players
@@ -79,52 +68,70 @@ ORDER BY total_points DESC
 LIMIT 10;
 ```
 
-## 🔍 Example Player History Preview
+---
+
+## 🧠 Example: Player History Preview
 
 ```bash
-python get_player_history.py 328 // Salah id
+python get_player_history.py 328  # Example: Salah (ID 328)
 ```
+
+Output:
 ```
 GW | Points | Goals | Assists | CS | Home | H-Score | A-Score | Bonus | xG | xA | Transfers In | Transfers Out | Kickoff Time
---------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
  1 |     14 |     1 |       1 |  1 |    0 |       0 |       2 |     3 | 0.70 | 0.15 |            0 |            0 | 2024-08-17T11:30:00Z
  2 |     10 |     1 |       0 |  1 |    1 |       2 |       0 |     2 | 0.50 | 0.25 |       262302 |        64190 | 2024-08-25T15:30:00Z
  3 |     17 |     1 |       2 |  1 |    0 |       0 |       3 |     3 | 0.50 | 0.63 |       308526 |       186127 | 2024-09-01T15:00:00Z
 ```
 
+---
+
 ## 📊 Jupyter Notebook Support
-You can also explore and analyze FPL data interactively using Jupyter Notebooks.
 
-```jupyter notebook```
+You can explore and analyze FPL data interactively via Jupyter Notebooks:
 
-An example notebook is included:
+```bash
+jupyter notebook
+```
 
-```fpl_query.ipynb```
+An example notebook is included:  
+📄 `fpl_query_example.ipynb`
 
+It demonstrates how to:
+- Run SQL queries on `fpl_data.db`
+- Load results into `pandas.DataFrame`
+- Display results using `tabulate`
+- Prepare for visualizations with `matplotlib` or `seaborn` *(optional)*
+
+---
 
 ### 🔍 Example Jupyter Output Preview
 
 ![Top Players Preview](assets/top_players.png)
 
-This notebook allows you to:
+## 🛠️ Future Improvements
 
-Query fpl_data.db using SQL
+- 📈 Add advanced visualizations and charts
+- 🌐 Provide a REST API interface for external use
+- 🧪 Add tests and validation
 
-Load results into pandas.DataFrame
+---
 
-Display formatted tables using tabulate
+## 🤝 Contributions
 
-Prepare for visualizations with matplotlib or seaborn (optional)
+Contributions are welcome!  
+Feel free to fork the repo, open issues, or submit pull requests.
 
-## 📝 Future Improvements
+---
 
-🚀 Adding advanced data visualization\
-🚀 Creating a REST API to serve data
+## 📞 Repository
 
-💡 **Contributions are welcome!** Feel free to fork, improve, and submit pull requests.
+GitHub: [fpl-insights](https://github.com/goranJankovic/fpl-insights)
+Email: `jankovicsrb@gmail.com`
 
-📞 **GitHub Repository:** [fpl-insights](https://github.com/goranJankovic/fpl-insights)
+---
 
-🚀 Enjoy FPL data insights! 🏆
+## 🏆 Enjoy exploring FPL data!
 
 
